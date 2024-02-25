@@ -1,0 +1,90 @@
+<ng-container *ngIf="data$ | async as response">
+    <p *ngIf="response.loading">Loading ...</p>
+    <div class="container mt-3 mt-md-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img
+                        src="assets/images/default-image.jpg"
+                        class="rounded float-start film-placeholder-icon"
+                    />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h1>{{response.data?.name}}</h1>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Date of birth</small>
+                        <p>{{ response?.data?.birth_year }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Gender</small>
+                        <p>{{ response?.data?.gender }}</p>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Height</small>
+                        <p>{{ response?.data?.height }}</p>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Mass</small>
+                        <p>{{ response?.data?.mass }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Hair Color</small>
+                        <p>{{ response?.data?.hair_color }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Skin Color</small>
+                        <p>{{ response?.data?.skin_color }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <small class="text-muted">Eye Color</small>
+                        <p>{{ response?.data?.eye_color }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="text-center my-2 my-md-4"><h3>Character details</h3></div>
+    <div class="row">
+      <div class="offset-0 offset-md-4 col-md-4">
+        <div class="card">
+          <div class="card-header">
+
+          </div>
+          <div class="card-body">
+            <div>
+              <small class="text-muted">Name</small>
+              <p>{{response?.data?.name}}</p>
+            </div>
+            <div>
+              <small class="text-muted">Date of birth</small>
+              <p>{{response?.data?.birth_year}}</p>
+            </div>
+            <div>
+              <small class="text-muted">Gender</small>
+              <p>{{response?.data?.gender}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    </div>
+
+    <div class="container my-3">
+        <div class="my-3 my-md-4">
+            <h4 class="text-muted">Films</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3" *ngFor="let film of response.data?.films">
+                <a
+                    [routerLink]="['../../details', film | idReader]"
+                    routerLinkActive="router-link-active"
+                    >{{ film }}</a
+                >
+            </div>
+        </div>
+    </div>
+</ng-container>

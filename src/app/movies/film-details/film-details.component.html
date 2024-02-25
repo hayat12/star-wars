@@ -1,0 +1,54 @@
+<ng-container *ngIf="data$ | async as film">
+  <p *ngIf="film.loading">Loading ...</p>
+  <div class="container">
+    <div class="row mt-2 mt-md-4">
+      <div class="col-md-6 order-2 order-md-1">
+        <!-- <div class="text-center"><h3 class="text-muted">Details</h3></div> -->
+        <div class="col text-center text-md-start mt-2 mt-md-4"><h1 class="updatecase">{{film.data?.title}}</h1></div>
+        <div class="my-3 my-md-5 p-3">
+          <div class="mt-2">
+            <h5>Release Date</h5>
+            <p class="text-muted">{{film.data?.release_date | date: 'mediumDate'}}</p>
+          </div>
+
+          <div class="mt-2">
+            <h5>Producer</h5>
+            <p class="text-muted">{{film.data?.producer}}</p>
+          </div>
+
+          <div class="mt-2 ">
+            <h5>Director</h5>
+            <p class="text-muted">{{film.data?.director}}</p>
+          </div>
+
+          <h4>Opening Crawl</h4>
+          <p class="text-muted text-justify">{{film.data?.opening_crawl}}</p>
+
+        </div>
+
+      </div>
+      <div class="col-md-6 order-1 order-md-2">
+        <div class="card border-0">
+          <div class="card-body text-center">
+            <img src="assets/images/default-image.jpg" class="rounded film-placeholder-icon">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="container mb-3">
+    <div class="my-3 my-md-4">
+        <h4 class="text-muted">Characters</h4>
+      </div>
+
+    <div class="row">
+      <div class="col-12 col-md-4 col-xl-3" *ngFor="let character of film.data?.characters">
+        <a class="link-opacity-100-hover" [routerLink]="['../../character', character]" routerLinkActive="router-link-active" >{{character}}</a>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

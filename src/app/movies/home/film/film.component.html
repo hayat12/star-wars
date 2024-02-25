@@ -1,0 +1,23 @@
+<ng-container *ngIf="film">
+    <a
+        routerLink="./details/{{ film.episode_id }}"
+        routerLinkActive="router-link-active"
+        class="to-file"
+    >
+        <div
+            class="card movie-card border-0 rounded"
+            [ngStyle]="{
+                'background-image': 'url(assets/images/default-image.jpg)',
+                'background-position': 'center',
+                'background-size': 'cover'
+            }"
+        >
+
+        <div class="card-body text-center">
+            <h5 class="file-title">
+                {{ film.title }}
+            </h5>
+        </div>
+        </div>
+    </a>
+</ng-container>
