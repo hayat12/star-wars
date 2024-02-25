@@ -30,7 +30,7 @@ export const fileEffect = createEffect(
       ofType(filmsActions.details),
       switchMap((data) =>
         filmsService
-          .getFilm(data.id)
+          .getFilm(Number(data.id))
           .pipe(map((film) => filmsActions.viewSuccess({ film })))
       )
     );

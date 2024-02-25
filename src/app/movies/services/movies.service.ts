@@ -20,7 +20,7 @@ export class MoviesService {
       );
   }
 
-  getFilm(id:string):Observable<FilmsInterface>{
+  getFilm(id:number):Observable<FilmsInterface>{
     return this.http.get<FilmsInterface>(`${this.endPoint}/films/${id}`)
     .pipe(
       map((response)=>response)

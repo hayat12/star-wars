@@ -7,8 +7,6 @@ import {
     HttpClientTestingModule,
     HttpTestingController,
 } from '@angular/common/http/testing';
-import { Pagination } from 'src/app/shared/interfaces/pagination.interface';
-import { FilmsInterface } from '../interfaces/films.interface';
 import { FILMS } from 'src/app/mock/films';
 
 describe('HomeComponent', () => {
@@ -40,7 +38,6 @@ describe('HomeComponent', () => {
         service.getFilms().subscribe((data)=>{
             expect(data).toBeTruthy();
         })
-
         const mockRequest = httpTestingController.expectOne(`${service.endPoint}/films`);
         expect(mockRequest.request.method).toBe("GET");
         mockRequest.flush(Object.values(FILMS))

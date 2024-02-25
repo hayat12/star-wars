@@ -46,36 +46,10 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="text-center my-2 my-md-4"><h3>Character details</h3></div>
-    <div class="row">
-      <div class="offset-0 offset-md-4 col-md-4">
-        <div class="card">
-          <div class="card-header">
-
-          </div>
-          <div class="card-body">
-            <div>
-              <small class="text-muted">Name</small>
-              <p>{{response?.data?.name}}</p>
-            </div>
-            <div>
-              <small class="text-muted">Date of birth</small>
-              <p>{{response?.data?.birth_year}}</p>
-            </div>
-            <div>
-              <small class="text-muted">Gender</small>
-              <p>{{response?.data?.gender}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
 
     <div class="container my-3">
-        <div class="my-3 my-md-4">
-            <h4 class="text-muted">Films</h4>
-        </div>
+        <sw-sub-section subTitle="Films"/>
 
         <div class="row">
             <div class="col-md-3" *ngFor="let film of response.data?.films">
