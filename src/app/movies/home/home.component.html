@@ -1,7 +1,9 @@
 <div>
     <ng-container *ngIf="data$ | async as data">
         <div class="movies my-3">
-            <section class="featured"></section>
+            <section class="featured">
+                <h1>Star Wars</h1>
+            </section>
 
             <div class="container">
                 <div class="row pt-4">
@@ -18,6 +20,7 @@
                         <button
                             class="btn btn-outline-success shadow-none"
                             (click)="onSearch(search.value)"
+                            [disabled]="data.loading"
                             type="button"
                         >
                             Search

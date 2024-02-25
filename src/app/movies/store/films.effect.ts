@@ -2,11 +2,14 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { MoviesService } from '../services/movies.service';
 import { filmsActions } from './films.actions';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, filter, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Store, select } from '@ngrx/store';
+import { MovieState } from './movie.state';
+import { RouterLinkActive } from '@angular/router';
 
 export const filmsEffect = createEffect(
-    (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
+    (actions$ = inject(Actions), filmsService = inject(MoviesService), store = inject(Store<{ movie: MovieState }>)) => {
         return actions$.pipe(
             ofType(filmsActions.films),
             switchMap((filers) =>

@@ -1,12 +1,20 @@
 .movies
   display: flex
   flex-direction: column
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
   .featured
     height: 50vh
+    opacity: 0.6
     background-image: url('../../../assets/images/main-page.webp')
     background-size: cover
     background-repeat: no-repeat
     background-attachment: fixed
-    .recent-added
-      min-height: 40vh
+    display: flex
+    align-items: center
+    justify-content: center
+    h1
+        font-size: 68px
+        opacity: none
+        color: white
+        font-weight: bold
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 3)
