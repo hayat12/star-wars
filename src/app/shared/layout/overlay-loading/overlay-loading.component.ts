@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, Success } from 'src/app/store/app.actions';
+import { AppState, Error, Success } from 'src/app/store/app.actions';
 
 @Component({
   selector: 'sw-overlay-loading',
@@ -8,6 +8,7 @@ import { AppState, Success } from 'src/app/store/app.actions';
   styleUrls: ['./overlay-loading.component.sass']
 })
 export class OverlayLoadingComponent {
-    data$ = this.store.select((state)=>state)
-    constructor(private store:Store<AppState<Success | Error>>){}
+    data$ = this.store.select((state)=>state.app)
+    // private store: Store<{ movie: MovieState }>
+    constructor(private store:Store<{ app: AppState<Success| Error>}>){}
 }

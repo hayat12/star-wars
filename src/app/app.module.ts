@@ -19,18 +19,36 @@ import { appReducer } from './store/app.reducer';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    EffectsModule.forRoot([]),
+
+
+    // StoreDevtoolsModule.instrument({
+    //   logOnly: !isDevMode(),
+    //   autoPause: true,
+    //   trace: false,
+    //   traceLimit: 75,
+    //   maxAge: 25,
+    //   features: {
+    //     pause: false,
+    //     lock: true,
+    //     persist: true
+    //   }, }),
+    // StoreModule.forRoot({app: appReducer}),
+    // EffectsModule.forRoot([]),
+
+    StoreModule.forRoot({app: appReducer}),
     StoreDevtoolsModule.instrument({
       logOnly: !isDevMode(),
       autoPause: true,
       trace: false,
       traceLimit: 75,
-      maxAge: 25, features: {
+      maxAge: 25,
+      features: {
         pause: false,
         lock: true,
         persist: true
       }, }),
-    StoreModule.forRoot({app: appReducer})
+        EffectsModule.forRoot([])
+
   ],
   providers: [
   {

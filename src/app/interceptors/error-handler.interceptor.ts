@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, finalize, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { appActions } from '../store/app.actions';
 
@@ -20,12 +20,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     this.store.dispatch(appActions.request({ api: request.url }));
     return next.handle(request).pipe(
       tap({
-        next: () =>
-          this.store.dispatch(
-            appActions.appSuccess({
-              success: { message: 'Success', api: request.url, status: 200 },
-            })
-          ),
         error: (request: HttpErrorResponse) => {
           this.store.dispatch(
             appActions.appError({
@@ -37,7 +31,14 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
             })
           );
         },
-      })
+      }),
+      finalize(()=>{
+        this.store.dispatch(
+            appActions.appSuccess({
+              success: { message: 'Success', api: request.url, status: 200 },
+            })
+          )
+    })
     );
   }
 }

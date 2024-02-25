@@ -10,10 +10,8 @@ const loadAppReducer = createFeature({
   reducer: createReducer(
     initialState,
     on(appActions.request, (state) => (
-        console.log(state),
         { ...state, loading: true })),
     on(appActions.appSuccess, (state) => (
-        console.log(state),
         { ...state, loading: false })),
     on(appActions.appError, (state) => ({ ...state, loading: false })),
 )});

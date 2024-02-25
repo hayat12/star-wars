@@ -6,49 +6,51 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export const filmsEffect = createEffect(
-  (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
-    return actions$.pipe(
-      ofType(filmsActions.files),
-      switchMap((filers) =>
-        filmsService.getFilms(filers.filter).pipe(
-          map((films) => {
-            return filmsActions.filmsSuccess({ films });
-          }),
-          catchError((error: HttpErrorResponse) => {
-            return of(filmsActions.filmsError(error.error));
-          })
-        )
-      )
-    );
-  },
-  { functional: true }
+    (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
+        return actions$.pipe(
+            ofType(filmsActions.films),
+            switchMap((filers) =>
+                filmsService.getFilms(filers.filter).pipe(
+                    map((films) => {
+                        return filmsActions.filmsSuccess({ films });
+                    }),
+                    catchError((error: HttpErrorResponse) => {
+                        return of(filmsActions.filmsError(error.error));
+                    })
+                )
+            )
+        );
+    },
+    { functional: true }
 );
 
 export const fileEffect = createEffect(
-  (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
-    return actions$.pipe(
-      ofType(filmsActions.details),
-      switchMap((data) =>
-        filmsService
-          .getFilm(Number(data.id))
-          .pipe(map((film) => filmsActions.viewSuccess({ film })))
-      )
-    );
-  },
-  { functional: true }
+    (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
+        return actions$.pipe(
+            ofType(filmsActions.details),
+            switchMap((data) => {
+                return filmsService
+                    .getFilm(Number(data.id))
+                    .pipe(map((film) => filmsActions.viewSuccess({ film })));
+            })
+        );
+    },
+    { functional: true }
 );
 export const peopleEffect = createEffect(
-  (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
-    return actions$.pipe(
-      ofType(filmsActions.character),
-      switchMap((data) =>
-        filmsService
-          .getCharacter(data.link)
-          .pipe(
-            map((character) => filmsActions.characterSuccess({ character }))
-          )
-      )
-    );
-  },
-  { functional: true }
+    (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
+        return actions$.pipe(
+            ofType(filmsActions.character),
+            switchMap((data) =>
+                filmsService
+                    .getCharacter(data.link)
+                    .pipe(
+                        map((character) =>
+                            filmsActions.characterSuccess({ character })
+                        )
+                    )
+            )
+        );
+    },
+    { functional: true }
 );

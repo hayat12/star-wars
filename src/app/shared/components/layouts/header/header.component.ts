@@ -13,7 +13,7 @@ export class HeaderComponent {
 
   onSearch(search:string = "") {
     this.store.dispatch(
-      filmsActions.files({ filter: { page: 1, search } })
+      filmsActions.films({ filter: { page: 1, search } })
     );
   }
 }

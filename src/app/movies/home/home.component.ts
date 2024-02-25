@@ -17,18 +17,14 @@ export class HomeComponent implements OnInit {
     constructor(private store: Store<{ movie: MovieState }>) {}
 
     ngOnInit(): void {
-        this.store.dispatch(filmsActions.files({ filter: this.filters }));
+        this.store.dispatch(filmsActions.films({ filter: this.filters }));
     }
 
     onSearch(term: string): void {
-        if (term.length < 1) {
-            this.searchInput.nativeElement.focus();
-        } else {
-            this.filters = {
-                ...this.filters,
-                search: term,
-            };
-            this.ngOnInit();
-        }
+        this.filters = {
+            ...this.filters,
+            search: term,
+        };
+        this.ngOnInit();
     }
 }

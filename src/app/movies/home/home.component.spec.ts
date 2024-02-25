@@ -8,6 +8,7 @@ import {
     HttpTestingController,
 } from '@angular/common/http/testing';
 import { FILMS } from 'src/app/mock/films';
+import { FilmsFilterInterface } from '../interfaces/films-filter.interface';
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
@@ -35,10 +36,11 @@ describe('HomeComponent', () => {
     });
 
     it('should get movies', () => {
-        service.getFilms().subscribe((data)=>{
+        const filter:FilmsFilterInterface = {page: 1, search: ""}
+        service.getFilms(filter).subscribe((data)=>{
             expect(data).toBeTruthy();
         })
-        const mockRequest = httpTestingController.expectOne(`${service.endPoint}/films`);
+        const mockRequest = httpTestingController.expectOne(`${service.endPoint}/films?page=1&search=`)
         expect(mockRequest.request.method).toBe("GET");
         mockRequest.flush(Object.values(FILMS))
     });

@@ -16,7 +16,7 @@ const loadFilmReducer = createFeature({
   name: 'films',
   reducer: createReducer(
     initialState,
-    on(filmsActions.files, (state) => ({ ...state, loading: true })),
+    on(filmsActions.films, (state) => ({ ...state, loading: true })),
     on(filmsActions.filmsSuccess, (state, actions) => ({
       ...state,
       loading: false,
