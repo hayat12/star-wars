@@ -9,8 +9,8 @@ export const filmsEffect = createEffect(
   (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
     return actions$.pipe(
       ofType(filmsActions.files),
-      switchMap(() =>
-        filmsService.getFilms().pipe(
+      switchMap((filers) =>
+        filmsService.getFilms(filers.filter).pipe(
           map((films) => {
             return filmsActions.filmsSuccess({ films });
           }),

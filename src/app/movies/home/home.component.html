@@ -1,30 +1,49 @@
-
 <div>
-  <ng-container *ngIf="data$ | async as data">
+    <ng-container *ngIf="data$ | async as data">
+        <div class="movies my-3">
+            <section class="featured"></section>
 
-    <div class="movies my-3">
-      <section class="featured"></section>
-      <div class="mt-2 mt-md-4 mx-3">
-        <h4 class="text-muted">Movies</h4>
-      </div>
+            <div class="container">
+                <div class="row pt-4">
+                    <h4 class="col-md-6 col-xl-8 text-muted text-center text-md-start">Movies</h4>
 
-      <div class="container-fluid">
-        <section class="recent-added">
-          <ng-container *ngIf="data.loading">
-            <div class="spinner-grow spinner-grow-sm" role="status">
-              <span class="visually-hidden">Loading...</span>
+                    <div class="col-md-6 col-xl-4 d-flex" role="search">
+                        <input
+                            class="form-control me-2 shadow-none"
+                            #search
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                        <button
+                            class="btn btn-outline-success shadow-none"
+                            (click)="onSearch(search.value)"
+                            type="button"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <section class="recent-added">
+                    <ng-container *ngIf="data.loading">
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </ng-container>
+
+                    <div class="p-2">
+                        <div class="row">
+                            <div
+                                *ngFor="let o of data.data"
+                                class="col-12 col-sm-6 col-md-3 col-xl-2 mt-2 p-2"
+                            >
+                                <sw-film [film]="o" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-          </ng-container>
-
-          <div class="p-2">
-            <div class="row">
-              <div *ngFor="let o of data.data" class="col-12 col-sm-6 col-md-3 col-xl-2 mt-2 p-2">
-              <sw-film [film]="o"/>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </ng-container>
+        </div>
+    </ng-container>
 </div>

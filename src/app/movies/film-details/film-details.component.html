@@ -1,6 +1,6 @@
 <ng-container *ngIf="data$ | async as film">
     <p *ngIf="film.loading">Loading ...</p>
-    <div class="container">
+    <div class="container mb-3">
         <div class="row mt-2 mt-md-4">
             <div class="col-md-6 order-2 order-md-1">
                 <div class="col text-center text-md-start mt-2 mt-md-4">
@@ -41,9 +41,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container mb-3">
         <sw-sub-section subTitle="Characters"/>
         <div class="row">
             <div
