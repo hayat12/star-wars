@@ -1,28 +1,33 @@
-# StarWars
+#StarWarsApplication
+#Configurations
+    -   Global Spinner: Implemented a global spinner that appears during any API call, providing a visual indication of ongoing data retrieval.
+    -   State Management: Implemented state management to optimize performance by avoiding unnecessary API calls when viewing movie details.
+    -   Bootstrap SCSS: Configured and installed Bootstrap SCSS, enabling easy modification with a custom theme to enhance the application's visual appeal.
+    -   API Interceptor: Set up an API interceptor to handle all API calls, ensuring smooth updates to the app state and managing the global spinner effectively.
+    -   Shared Components and Pipes: Configured shared components and pipes for improved code organization and reusability.
+#Functionalities
+    ###List all Films
+    -   List: List all movies
+    -   Search Feature: Implemented a search functionality to filter movies, providing a user-friendly way to find specific films.
+    -   Unit Testing: Ensured the reliability of the list functionality by incorporating unit tests.
+    #Film Details
+    -   Display Film Details: Upon clicking on each film redirects to a detailed view, displaying comprehensive information about the selected movie.
+    -   List Characters: Lists all characters associated with the movie.
+    -   Unit Testing: tested the film details functionality for robustness and reliability.
+    #Character Details
+    -   Display Character Details: Clicking on each character showcases detailed information about the selected character.
+    -   List Movie Characters: Lists all movies of the selected character.
+    -   Unit Testing: Ensured the character details functionality is thoroughly tested for accuracy.
+    #Movie Details Page
+    -   Redirect on Click: Clicking on a film redirects to the movie details page, streamlining navigation and providing a seamless user experience.
+    #Movie Service
+    -   Data Fetching: Implemented a movie service to fetch data from the API efficiently.
+    -   Unit Testing: Conducted unit tests to validate the correctness and reliability of the movie service.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# star-wars
+#Technologies
+    -   Node 20
+    -   Angular 16
+    -   Typescript 5
+    -   NGRX 16
+    -   Bootstrap 5
+    -   Unit Testing

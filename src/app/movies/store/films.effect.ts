@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { MovieState } from './movie.state';
 
+/** to load all @files */
 export const filmsEffect = createEffect(
     (
         actions$ = inject(Actions),
@@ -51,6 +52,7 @@ export const filmsEffect = createEffect(
     { functional: true }
 );
 
+/** to get @file based on episode_id */
 export const fileEffect = createEffect(
     (
         actions$ = inject(Actions),
@@ -84,6 +86,8 @@ export const fileEffect = createEffect(
     },
     { functional: true }
 );
+
+/** to get the @character based on character link in the @film */
 export const peopleEffect = createEffect(
     (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
         return actions$.pipe(
