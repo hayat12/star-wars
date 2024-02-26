@@ -23,15 +23,15 @@ export const filmsEffect = createEffect(
                 )
             ),
             switchMap(([filers, filmsState]) => {
-                if(!!filmsActions.searchFilms){
+                if (!!filmsActions.searchFilms) {
                     return filmsService.getFilms(filers.filter).pipe(
-                    map((films) => {
-                        return filmsActions.filmsSuccess({ films });
-                    }),
-                    catchError((error: HttpErrorResponse) => {
-                        return of(filmsActions.filmsError(error.error));
-                    })
-                );
+                        map((films) => {
+                            return filmsActions.filmsSuccess({ films });
+                        }),
+                        catchError((error: HttpErrorResponse) => {
+                            return of(filmsActions.filmsError(error.error));
+                        })
+                    );
                 }
                 if (filmsState.data) {
                     return of(

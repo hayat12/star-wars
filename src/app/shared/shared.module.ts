@@ -13,7 +13,8 @@ const component = [
     SubSectionComponent,
     CustomDatePipe,
     IdReaderPipe,
-    OverlayLoadingComponent
+    OverlayLoadingComponent,
+    CommonErrorComponent
 ];
 @NgModule({
     declarations: component,

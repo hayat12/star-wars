@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState, Error, Success } from 'src/app/store/app.actions';
 
 @Component({
   selector: 'sw-common-error',
@@ -7,5 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./common-error.component.sass'],
 })
 export class CommonErrorComponent {
-  @Input({required: true}) error: string = "";
+    data$ = this.store.select((state)=>state.app);
+    constructor(private store: Store<{app: AppState<Success| Error>}>){}
+    // @Input({required: true}) error: string = "";
 }

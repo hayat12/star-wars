@@ -15,19 +15,19 @@ import { CharacterComponent } from './people/character/character.component';
 import { reducers } from './store/movie.state';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    FilmComponent,
-    FilmDetailsComponent,
-    CharacterComponent
-  ],
-  imports: [
-    HttpClientModule,
-    SharedModule,
-    CommonModule,
-    StoreModule.forFeature("movie", reducers),
-    EffectsModule.forFeature(filmsEffects),
-    MoviesRoutingModule,
-  ]
+    declarations: [
+        HomeComponent,
+        FilmComponent,
+        FilmDetailsComponent,
+        CharacterComponent,
+    ],
+    imports: [
+        HttpClientModule,
+        SharedModule,
+        CommonModule,
+        StoreModule.forFeature('movie', reducers),
+        EffectsModule.forFeature(filmsEffects),
+        MoviesRoutingModule,
+    ],
 })
-export class MoviesModule { }
+export class MoviesModule {}
