@@ -2,25 +2,29 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { MoviesService } from '../services/movies.service';
 import { filmsActions } from './films.actions';
-import { catchError, filter, map, of, switchMap, withLatestFrom } from 'rxjs';
+import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { MovieState } from './movie.state';
-import { RouterLinkActive } from '@angular/router';
 
 export const filmsEffect = createEffect(
-    (actions$ = inject(Actions), filmsService = inject(MoviesService), store = inject(Store<{ movie: MovieState }>)) => {
+    (actions$ = inject(Actions), filmsService = inject(MoviesService), store = inject(Store)) => {
         return actions$.pipe(
             ofType(filmsActions.films),
-            switchMap((filers) =>
-                filmsService.getFilms(filers.filter).pipe(
-                    map((films) => {
-                        return filmsActions.filmsSuccess({ films });
-                    }),
-                    catchError((error: HttpErrorResponse) => {
-                        return of(filmsActions.filmsError(error.error));
-                    })
-                )
+            withLatestFrom(store.select((state:{ movie: MovieState })=>state.movie.filmsKeyFeature)),
+            switchMap(([filers, filmsState]) =>{
+            if(filmsState.data){
+            return of(filmsActions.filmsSuccess({films: filmsState.data}));
+            }
+            return filmsService.getFilms(filers.filter).pipe(
+                map((films) => {
+                    return filmsActions.filmsSuccess({ films });
+                }),
+                catchError((error: HttpErrorResponse) => {
+                    return of(filmsActions.filmsError(error.error));
+                })
+            )
+            }
             )
         );
     },
@@ -28,10 +32,14 @@ export const filmsEffect = createEffect(
 );
 
 export const fileEffect = createEffect(
-    (actions$ = inject(Actions), filmsService = inject(MoviesService)) => {
+    (actions$ = inject(Actions), filmsService = inject(MoviesService), store = inject(Store)) => {
         return actions$.pipe(
             ofType(filmsActions.details),
-            switchMap((data) => {
+            withLatestFrom(store.select((state:{ movie: MovieState })=>state.movie.filmsKeyFeature)),
+            switchMap(([data, filmsState]) => {
+                if(filmsState.data !=null){
+                    return of(filmsActions.viewSuccess({ film: filmsState.data.results.find((o)=>o.episode_id==Number(data.id)) || null }));
+                }
                 return filmsService
                     .getFilm(Number(data.id))
                     .pipe(map((film) => filmsActions.viewSuccess({ film })));

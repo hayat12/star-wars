@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { appReducer } from './store/app.reducer';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,21 +20,6 @@ import { appReducer } from './store/app.reducer';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-
-
-    // StoreDevtoolsModule.instrument({
-    //   logOnly: !isDevMode(),
-    //   autoPause: true,
-    //   trace: false,
-    //   traceLimit: 75,
-    //   maxAge: 25,
-    //   features: {
-    //     pause: false,
-    //     lock: true,
-    //     persist: true
-    //   }, }),
-    // StoreModule.forRoot({app: appReducer}),
-    // EffectsModule.forRoot([]),
 
     StoreModule.forRoot({app: appReducer}),
     StoreDevtoolsModule.instrument({
@@ -47,7 +33,8 @@ import { appReducer } from './store/app.reducer';
         lock: true,
         persist: true
       }, }),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
+        StoreRouterConnectingModule.forRoot()
 
   ],
   providers: [

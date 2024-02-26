@@ -13,7 +13,7 @@ export const filmsActions = createActionGroup(
       "films error": props<{error: string | null | undefined}>(),
       details: props<{id:string}>(),
       character: props<{link:string}>(),
-      "view success" : props<{film: FilmsInterface}>(),
+      "view success" : props<{film: FilmsInterface | null}>(),
       "character success" : props<{character: CharacterInterface}>(),
     }
   })

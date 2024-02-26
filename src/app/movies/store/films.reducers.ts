@@ -1,15 +1,16 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { filmsActions } from './films.actions';
 import { FilmsInterface } from '../interfaces/films.interface';
+import { Pagination } from 'src/app/shared/interfaces/pagination.interface';
 
 export interface LoadFilms<F> {
   loading: boolean;
-  data: F;
+  data: F | null;
   error: string | null | undefined | '';
 }
-const initialState: LoadFilms<ReadonlyArray<FilmsInterface>> = {
+const initialState: LoadFilms<Pagination<FilmsInterface>> = {
   loading: false,
-  data: [],
+  data: null,
   error: null,
 };
 const loadFilmReducer = createFeature({
@@ -20,7 +21,7 @@ const loadFilmReducer = createFeature({
     on(filmsActions.filmsSuccess, (state, actions) => ({
       ...state,
       loading: false,
-      data: actions.films.results,
+      data: actions.films,
     })),
     on(filmsActions.filmsError, (state, actions) => ({
       ...state,
