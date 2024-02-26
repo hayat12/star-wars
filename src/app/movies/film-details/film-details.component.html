@@ -7,24 +7,24 @@
                 </div>
                 <div class="my-3 p-3">
                     <div class="mt-2">
-                        <h5>Release Date</h5>
-                        <p class="text-muted">
+                        <h5 id="release_date_label">Release Date</h5>
+                        <p class="text-muted" id="release_date">
                             {{ film.data?.release_date | date : "mediumDate" }}
                         </p>
                     </div>
 
                     <div class="mt-2">
                         <h5>Producer</h5>
-                        <p class="text-muted">{{ film.data?.producer }}</p>
+                        <p id="producer" class="text-muted">{{ film.data?.producer }}</p>
                     </div>
 
                     <div class="mt-2">
                         <h5>Director</h5>
-                        <p class="text-muted">{{ film.data?.director }}</p>
+                        <p id="director" class="text-muted">{{ film.data?.director }}</p>
                     </div>
 
                     <h4>Opening Crawl</h4>
-                    <p class="text-muted text-justify">
+                    <p id="opening_crawl" class="text-muted text-justify">
                         {{ film.data?.opening_crawl }}
                     </p>
                 </div>

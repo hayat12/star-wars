@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesRoutingModule } from './movies-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule, combineReducers } from '@ngrx/store';
-import { filmsKeyFeature, filmsReducer } from "./store/films.reducers";
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as filmsEffects from './store/films.effect';
