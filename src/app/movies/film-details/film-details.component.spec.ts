@@ -12,7 +12,6 @@ import { FILMS } from 'src/app/mock/films';
 import { ActivatedRoute } from '@angular/router';
 import { MovieState, reducers } from '../store/movie.state';
 import { filmsActions } from '../store/films.actions';
-import { SubSectionComponent } from 'src/app/shared/components/sub-section.component';
 import { of } from 'rxjs';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -64,18 +63,6 @@ describe('FilmDetailsComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    // it('should get the movie details', () => {
-    //     const id = mockFileData.episode_id || 0;
-    //     service.getFilm(id).subscribe((data) => {
-    //         expect(data).toBeTruthy();
-    //     });
-    //     const mockRequest = httpTestingController.expectOne(
-    //         `${service.endPoint}/films/${id}`
-    //     );
-    //     expect(mockRequest.request.method).toBe('GET');
-    //     mockRequest.flush(Object.values(FILMS.results[0]));
-    // });
 
     it("should dispatch to get film details", ()=>{
         spyOn(store, 'dispatch');

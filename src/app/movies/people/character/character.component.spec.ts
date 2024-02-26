@@ -14,7 +14,6 @@ import { MovieState, reducers } from '../../store/movie.state';
 import { filmsActions } from '../../store/films.actions';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SubSectionComponent } from 'src/app/shared/components/sub-section.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('CharacterComponent', () => {
@@ -65,13 +64,6 @@ describe('CharacterComponent', () => {
     });
 
     it('should dispatch character details', () => {
-        // service.getCharacter(link).subscribe((data) => {
-        //     expect(data).toBeTruthy();
-        // });
-        // const mockRequest = httpTestingController.expectOne(link);
-        // expect(mockRequest.request.method).toBe('GET');
-        // mockRequest.flush(Object.values(mockCharacterData));
-
         spyOn(store, 'dispatch');
         component.ngOnInit();
         expect(store.dispatch).toHaveBeenCalledWith(
