@@ -5,6 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
+  HttpResponse,
 } from '@angular/common/http';
 import { Observable, finalize, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -19,14 +20,16 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     this.store.dispatch(appActions.request({ api: request.url }));
     return next.handle(request).pipe(
-      tap({
-        next: ()=>{
+    tap((event)=>{
+        if (event instanceof HttpResponse) {
             this.store.dispatch(
                 appActions.appSuccess({
                   success: { message: 'Success', api: request.url, status: 200 },
                 })
               )
-        },
+        }
+    }),
+      tap({
         error: (request: HttpErrorResponse) => {
             switch(request.status){
                 case 404:

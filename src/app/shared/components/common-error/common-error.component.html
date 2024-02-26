@@ -1,8 +1,8 @@
 <ng-container *ngIf="data$ | async as data">
-    <div
-        *ngIf="!data.loading && data.app?.message && data.app?.status !== 200"
-        class="alert alert-danger"
+    <div class="container mt-3" *ngIf="!data.loading && data.app?.message && data.app?.status !== 200">
+        <div class="alert alert-danger"
     >
         {{ data.app?.message }}
+    </div>
     </div>
 </ng-container>
