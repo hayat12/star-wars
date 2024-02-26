@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
             ...this.filters,
             search: term,
         };
-        this.ngOnInit();
+        this.store.dispatch(filmsActions.searchFilms({ filter: this.filters }));
     }
 }

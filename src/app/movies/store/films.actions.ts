@@ -9,6 +9,7 @@ export const filmsActions = createActionGroup(
     source: "film",
     events: {
       films: props<{filter: FilmsFilterInterface}>(),
+      searchFilms: props<{filter: FilmsFilterInterface}>(),
       "films success" : props<{films: Pagination<FilmsInterface>}>(),
       "films error": props<{error: string | null | undefined}>(),
       details: props<{id:string}>(),
